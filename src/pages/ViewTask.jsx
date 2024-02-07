@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useParams } from "react-router-dom";
-import { useTasks } from "../contexts/taskContext";
+import { useTasks } from "../contexts/TaskContext";
 import { useEffect, useState } from "react";
 
 function ViewTask() {

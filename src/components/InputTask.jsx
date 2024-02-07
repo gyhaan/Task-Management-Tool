@@ -3,7 +3,7 @@ import Button from "../components/Button";
 import DateTimePicker from "./DateTimePicker";
 import InputSubTask from "./InputSubTask";
 import RenderSubTasks from "./RenderSubTasks";
-import { useTasks } from "../contexts/taskContext";
+import { useTasks } from "../contexts/TaskContext";
 import { useNavigate } from "react-router-dom";
 
 function InputTask() {
