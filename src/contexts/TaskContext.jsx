@@ -6,10 +6,13 @@ const TaskContext = createContext();
 function TaskContextProvider({ children }) {
   const [tasks, setTasks] = useState([]);
   const [sorting, setSorting] = useState("default");
+  const [query, setQuery] = useState("");
 
   return (
     // eslint-disable-next-line no-undef
-    <TaskContext.Provider value={{ tasks, setTasks, sorting, setSorting }}>
+    <TaskContext.Provider
+      value={{ tasks, setTasks, sorting, setSorting, query, setQuery }}
+    >
       {children}
     </TaskContext.Provider>
   );

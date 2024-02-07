@@ -1,4 +1,7 @@
+import { useTasks } from "../contexts/TaskContext";
+
 function SearchBar() {
+  const { query, setQuery } = useTasks();
   return (
     <div className="wrapper">
       <svg
@@ -20,7 +23,13 @@ function SearchBar() {
           </clipPath>
         </defs>
       </svg>
-      <input type="text" placeholder="Search..." className="search" />
+      <input
+        type="text"
+        placeholder="Search..."
+        className="search"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+      />
       <button>
         <span className="search-arrow">&#11106;</span>
       </button>
