@@ -89,7 +89,7 @@ select {
 
 .top-wrapper {
   margin: 0 auto;
-  width: 1200px;
+  max-width: 1200px;
   display: flex;
   justify-content: center;
 }
@@ -158,6 +158,7 @@ select {
   width: 32px;
   height: 32px;
   border-radius: 50%;
+  color: #fff;
 }
 
 .buttons button:hover {

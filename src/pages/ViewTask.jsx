@@ -19,7 +19,9 @@ function ViewTask() {
 
   useEffect(
     function () {
-      setTask((task) => task.map((el) => ({ ...el, progress: percent })));
+      setTask((tasks) =>
+        tasks.map((task) => (percent ? { ...task, progress: percent } : task))
+      );
     },
     [percent]
   );

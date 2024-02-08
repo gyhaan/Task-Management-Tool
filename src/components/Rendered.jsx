@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useTasks } from "../contexts/TaskContext";
 
 function Rendered() {
-  const { tasks, sorting, query } = useTasks();
+  const { tasks, sorting, query, setTasks } = useTasks();
   let sorted;
 
   if (sorting === "default") {
@@ -33,6 +33,46 @@ function Rendered() {
     if (num < 5) return "Low";
     if (num >= 5 && num < 8) return "Medium";
     if (num > 8) return "High";
+  }
+
+  function handleDeleteTask(id) {
+    setTasks((tasks) => tasks.filter((task) => task.id !== id));
+  }
+
+  function handleCheckAll(id) {
+    const [selectedTask] = tasks.filter((task) => task.id === id);
+
+    if (selectedTask) {
+      if (selectedTask.subtask.length) {
+        const updatedSelectedSub = selectedTask.subtask.map((task) => ({
+          ...task,
+          checked: true,
+        }));
+
+        setTasks((tasks) =>
+          tasks.map((task) =>
+            task.id === selectedTask.id
+              ? {
+                  ...selectedTask,
+                  subtask: updatedSelectedSub,
+                  progress: 100,
+                }
+              : task
+          )
+        );
+      } else {
+        setTasks((tasks) =>
+          tasks.map((task) =>
+            task.id === selectedTask.id
+              ? {
+                  ...selectedTask,
+                  progress: 100,
+                }
+              : task
+          )
+        );
+      }
+    }
   }
 
   return (
@@ -104,7 +144,10 @@ function Rendered() {
                       </svg>
                     </button>
                   </Link>
-                  <button className="edit">
+                  <button
+                    className="edit"
+                    onClick={() => handleCheckAll(task.id)}
+                  >
                     <svg
                       className="feather feather-check"
                       fill="none"
@@ -119,6 +162,12 @@ function Rendered() {
                     >
                       <polyline points="20 6 9 17 4 12" />
                     </svg>
+                  </button>
+                  <button
+                    className="edit"
+                    onClick={() => handleDeleteTask(task.id)}
+                  >
+                    &#10006;
                   </button>
                 </div>
               </div>
