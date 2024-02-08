@@ -17,8 +17,12 @@ function Rendered() {
     sorted = tasks.slice().sort((a, b) => b.complexity - a.complexity);
   } else if (sorting === "Ascending Priority") {
     sorted = tasks.slice().sort((a, b) => a.priority - b.priority);
-  } else {
+  } else if (sorting === "Descending Priority") {
     sorted = tasks.slice().sort((a, b) => b.priority - a.priority);
+  } else {
+    sorted = tasks
+      .slice()
+      .sort((a, b) => b.complexity + b.priority - (a.complexity + a.priority));
   }
 
   const sortedQuery = sorted.filter((task) => {
