@@ -6,7 +6,7 @@ function InputSubTask({ setSubTask }) {
   const inputEl = useRef(null);
 
   function handleSubTasks() {
-    if (!description) return;
+    if (description.trim() === "") return;
     setSubTask((subTask) => [
       ...subTask,
       { description, checked: false, id: Date.now() },
