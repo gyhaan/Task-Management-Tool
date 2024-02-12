@@ -1,12 +1,22 @@
 /* eslint-disable react/prop-types */
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const TaskContext = createContext();
 
 function TaskContextProvider({ children }) {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(function () {
+    const value = JSON.parse(localStorage.getItem("tasks"));
+    return value || [];
+  });
   const [sorting, setSorting] = useState("default");
   const [query, setQuery] = useState("");
+
+  useEffect(
+    function () {
+      localStorage.setItem("tasks", JSON.stringify(tasks));
+    },
+    [tasks]
+  );
 
   return (
     // eslint-disable-next-line no-undef
