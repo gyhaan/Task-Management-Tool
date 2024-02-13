@@ -1,19 +1,21 @@
 /* eslint-disable react/prop-types */
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
 function InputSubTask({ setSubTask }) {
   const [description, setDescription] = useState("");
   const inputEl = useRef(null);
 
-  function handleSubTasks() {
-    if (description.trim() === "") return;
-    setSubTask((subTask) => [
-      ...subTask,
-      { description, checked: false, id: Date.now() },
-    ]);
-    setDescription("");
-  }
-
+  const handleSubTasks = useCallback(
+    function handleSubTasks() {
+      if (description.trim() === "") return;
+      setSubTask((subTask) => [
+        ...subTask,
+        { description, checked: false, id: Date.now() },
+      ]);
+      setDescription("");
+    },
+    [description, setSubTask]
+  );
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (document.activeElement === inputEl.current && e.code === "Enter") {
