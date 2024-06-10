@@ -17,7 +17,7 @@ function InputTask() {
   const navigate = useNavigate();
 
   function handleSaveTask() {
-    if (!taskName && deadline) {
+    if (taskName.trim() !== "" && deadline) {
       setTasks((tasks) => [
         ...tasks,
         {
@@ -44,7 +44,7 @@ function InputTask() {
           type="text"
           className="input-task"
           value={taskName}
-          onChange={(e) => setTaskName(e.target.value.trim())}
+          onChange={(e) => setTaskName(e.target.value)}
         />
         <label className="label-task">Priority Level</label>
         <Button
