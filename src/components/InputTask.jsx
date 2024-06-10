@@ -22,7 +22,7 @@ function InputTask() {
         ...tasks,
         {
           id: Date.now(),
-          name: taskName,
+          name: taskName.trim(),
           date: deadline,
           complexity: complexity,
           priority: priority,
